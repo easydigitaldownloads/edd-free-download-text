@@ -92,9 +92,6 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 			// activation
 			add_action( 'admin_init', array( $this, 'activation' ) );
 
-			// plugin meta
-			add_filter( 'plugin_row_meta', array( $this, 'plugin_meta' ), 10, 2 );
-			
 			// text domain
 			add_action( 'after_setup_theme', array( $this, 'load_textdomain' ) );
 
@@ -198,31 +195,27 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 			if ( $args['price'] && $args['price'] !== 'no' && ! $variable_pricing ) {
 				$price = edd_get_download_price( $args['download_id'] );
 
-				if ( 0 == $price ) {
+				if ( edd_is_free_download( $args['download_id'] ) ) {
 					$args['text'] = $free_download_text;
 				}
 			}
 
 			return $args;
 		}
-	
+
 		/**
 		 * Settings
 		*/
 		public function settings( $settings ) {
-		  $new_settings = array(
-				array(
-					'id'	=> 'edd_fdt_text',
-					'name'	=> sprintf( __( 'Free %s Text', 'edd-free-download-text' ), edd_get_label_singular() ),
-					'desc'	=> sprintf( __( 'Text that is shown for free %s', 'edd-free-download-text' ), edd_get_label_plural( true ) ),
-					'type'	=> 'text',
-					'std'	=> __( 'Free Download', 'edd-free-download-text' )
-				),
-			);
+			$settings['button_text']['free_download_text']['id'] = 'edd_fdt_text';
+			$settings['button_text']['free_download_text']['name'] = sprintf( __( 'Free %s Text', 'edd-free-download-text' ), edd_get_label_singular() );
+			$settings['button_text']['free_download_text']['desc'] = sprintf( __( 'Text that is shown for free %s.', 'edd-free-download-text' ), edd_get_label_plural( true ) );
+			$settings['button_text']['free_download_text']['type'] = 'text';
+			$settings['button_text']['free_download_text']['std'] = __( 'Free Download', 'edd-free-download-text' );
 
-			return array_merge( $settings, $new_settings );
+			return $settings;
 		}
-		
+
 		/**
 		 * Plugin settings link
 		 *
@@ -230,31 +223,10 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 		*/
 		public function settings_link( $links ) {
 			$plugin_links = array(
-				'<a href="' . admin_url( 'edit.php?post_type=download&page=edd-settings&tab=misc' ) . '">' . __( 'Settings', 'edd-free-download-text' ) . '</a>',
+				'<a href="' . admin_url( 'edit.php?post_type=download&page=edd-settings&tab=misc&section=button_text' ) . '">' . __( 'Settings', 'edd-free-download-text' ) . '</a>',
 			);
 
 			return array_merge( $plugin_links, $links );
-		}
-
-		/**
-		 * Modify plugin metalinks
-		 *
-		 * @access      public
-		 * @since       1.0.0
-		 * @param       array $links The current links array
-		 * @param       string $file A specific plugin table entry
-		 * @return      array $links The modified links array
-		 */
-		public function plugin_meta( $links, $file ) {
-		    if ( $file == plugin_basename( __FILE__ ) ) {
-		        $plugins_link = array(
-		            '<a title="'. __( 'View more plugins for Easy Digital Downloads by Sumobi', 'edd-free-download-text' ) .'" href="https://easydigitaldownloads.com/blog/author/andrewmunro/?ref=166" target="_blank">' . __( 'Author\'s EDD plugins', 'edd-free-download-text' ) . '</a>'
-		        );
-
-		        $links = array_merge( $links, $plugins_link );
-		    }
-
-		    return $links;
 		}
 
 	}
