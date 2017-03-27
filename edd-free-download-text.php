@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Easy Digital Downloads - Free Download Text
-Plugin URI: http://sumobi.com/shop/edd-free-download-text/
+Plugin URI: https://wordpress.org/plugins/edd-free-download-text/
 Description: Set the text for free download buttons
-Version: 1.0
-Author: Andrew Munro, Sumobi
-Author URI: http://sumobi.com/
+Version: 1.0.1
+Author: Easy Digital Downloads
+Author URI: https://easydigitaldownloads.com/
 License: GPL-2.0+
 License URI: http://www.opensource.org/licenses/gpl-license.php
 */
@@ -34,14 +34,12 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 		/**
 		 * Plugin Version
 		 */
-		private $version = '1.0';
+		private $version = '1.0.1';
 
 		/**
 		 * Plugin Title
 		 */
 		public $title = 'EDD Free Download Text';
-
-
 
 		/**
 		 * Main Instance
