@@ -96,7 +96,7 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 			add_action( 'after_setup_theme', array( $this, 'load_textdomain' ) );
 
 			// free download text
-			add_filter( 'edd_purchase_link_args', array( $this, 'free_download_text' ) );
+			add_filter( 'edd_purchase_link_defaults', array( $this, 'free_download_text' ) );
 
 			// settings
 			add_filter( 'edd_settings_misc', array( $this, 'settings' ) );
@@ -186,21 +186,21 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 		 * Easy Digital Downloads
 		 * Change the text of a download button when the download is free
 		*/
-		public function free_download_text( $args ) {
+		public function free_download_text( $defaults ) {
 			// Enter the text that should appear on the button when the download it's free
 			$free_download_text = edd_get_option( 'edd_fdt_text', __( 'Free Download', 'edd-free-download-text' ) );
 
-			$variable_pricing = edd_has_variable_prices( $args['download_id'] );
+			$variable_pricing = edd_has_variable_prices( $defaults['download_id'] );
 
-			if ( $args['price'] && $args['price'] !== 'no' && ! $variable_pricing ) {
-				$price = edd_get_download_price( $args['download_id'] );
+			if ( $defaults['price'] && $defaults['price'] !== 'no' && ! $variable_pricing ) {
+				$price = edd_get_download_price( $defaults['download_id'] );
 
-				if ( edd_is_free_download( $args['download_id'] ) ) {
-					$args['text'] = $free_download_text;
+				if ( edd_is_free_download( $defaults['download_id'] ) ) {
+					$defaults['text'] = $free_download_text;
 				}
 			}
 
-			return $args;
+			return $defaults;
 		}
 
 		/**
