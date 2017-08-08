@@ -3,7 +3,7 @@
 Plugin Name: Easy Digital Downloads - Free Download Text
 Plugin URI: https://wordpress.org/plugins/edd-free-download-text/
 Description: Set the text for free download buttons
-Version: 1.0.1
+Version: 1.0.2
 Author: Easy Digital Downloads
 Author URI: https://easydigitaldownloads.com/
 License: GPL-2.0+
@@ -34,7 +34,7 @@ if ( ! class_exists( 'EDD_Free_Download_Text' ) ) {
 		/**
 		 * Plugin Version
 		 */
-		private $version = '1.0.1';
+		private $version = '1.0.2';
 
 		/**
 		 * Plugin Title
