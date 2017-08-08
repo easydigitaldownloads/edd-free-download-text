@@ -2,8 +2,8 @@
 Contributors: sumobi, easydigitaldownloads
 Tags: easy digital downloads, digital downloads, e-downloads, edd, sumobi, purchase, e-commerce, Andrew Munro
 Requires at least: 3.8
-Tested up to: 4.7.3
-Stable tag: 1.0.1
+Tested up to: 4.8.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,15 +21,14 @@ It adds a new option under Downloads &rarr; Settings &rarr; Misc &rarr; Button T
 1. Upload to your site
 1. Navigate to `wp-admin/plugins.php` on your site (your WP Admin plugin page)
 1. Activate this plugin
-1. Configure the text from Downloads &rarr; Settings &rarr; Misc &rarr; Free Download Text
+1. Configure the text from Downloads &rarr; Settings &rarr; Misc &rarr; Button Text &rarr; Free Download Text
 
 OR you can just install it with WordPress by going to Plugins >> Add New >> and type this plugin's name
 
-== Screenshots ==
-
-1. The new "Free Download Text" option added to Downloads &rarr; Settings &rarr; Misc &rarr; Free Download Text
-
 == Changelog ==
+
+= 1.0.2 =
+* Tweak: Moved free_download_text() method to earlier filter for better compatibility
 
 = 1.0.1 =
 * Tweak: Update plugin information
